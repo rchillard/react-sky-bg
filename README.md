@@ -1,37 +1,33 @@
 # React Stencil
-This is a template, boilerplate, or as I like to call it, a stencil for creating ReactJS components.  This is a code stencil, because you can pick it up and use it as a guide to start tracing your next project.  You should use this stencil for components that you would like to pull out of your projects and publish individually on npm.
-
-It comes setup so that you can easily publish your new components to npm, while using a common set of core technologies: Babel, React, and Webpack.  In addition, support for GitHub pages is embedded, so you can automatically demo and show off your component.
-
-Credit goes to Brad Stiff's [very excellent guide](https://medium.com/dailyjs/building-a-react-component-with-webpack-publish-to-npm-deploy-to-github-guide-6927f60b3220) on publishing React components, which was used to get started on this project.
+This is a ReactJS component that generates a base <div> for your application and renders a background modeled after the sky.  The fun part is that this component has basic logic to detect the client's time of day and change the sky to reflect dawn, day, dusk, or night time.  Stars for mystery.
 
 # Installation
-Simple stencil makes for the best tracing err.. coding!
-1. Create a new directory
+Simply install as a dependency in your React application
+1. Create a new React application
 2. Navigate into your directory
 3. Run the following command:
 ```console
-npm install react-component-stencil
+npm install react-sky-bg
 ```
 
 # Usage
-Publishing new versions to NPM is as easy as running:
-```console
-npm publish
-```
-(Don't forget to increment the version in your package.json)
+Import this component into the file that controls your layout.  You can then place this component as the wrapper around the rest of your application, and it will render a background div with z-index: -1.  The stars are rendered as an absolutely positioned canvas element, so they will only appear in the initial viewport that is rendered.
 
-Build your component in the examples/dist directory:
-```console
-npm run build
+Here's a simple example:
+```javascript
+import React from "react";
+import SkyBG as Background from "./skybg";
+import Header from "./header";
+import Footer from "./footer";
+
+export default ({ children }) => (
+  <Background>
+    <Header />
+    {/* This is the main pane/content section */}
+    <div>{children}</div>
+    <Footer />
+  </Background>
+);
 ```
 
-Deploy a demo of your component to the gh-pages branch:
-```console
-npm run deploy
-```
-
-Build a new version and publish it to GitHub pages in one command:
-```console
-npm run publish-demo
-```
+As a note, for the stars to not interfere or overlap other components, they will need to use a CSS position that puts them in the same stacking context.  You can read more about [stacking context here](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Positioning/Understanding_z_index/The_stacking_context).
