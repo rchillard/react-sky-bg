@@ -1,5 +1,5 @@
 # React Stencil
-This is a ReactJS component that generates a base <div> for your application and renders a background modeled after the sky.  The fun part is that this component has basic logic to detect the client's time of day and change the sky to reflect dawn, day, dusk, or night time.  Stars for mystery.
+This is a ReactJS component that generates a base &lt;div&gt; for your application and renders a background modeled after the sky.  The fun part is that this component has basic logic to detect the client's time of day and change the sky to reflect dawn, day, dusk, or night time.  Stars for mystery.
 
 # Installation
 Simply install as a dependency in your React application
